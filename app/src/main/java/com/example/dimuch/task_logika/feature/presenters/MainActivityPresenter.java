@@ -16,7 +16,7 @@ import timber.log.Timber;
 @InjectViewState public class MainActivityPresenter extends MvpPresenter<IMainActivityView> {
 
   @Inject String testMessage;
-  private ArrayList<UserPoint> pointArray;
+  @Inject ArrayList<UserPoint> userPoints;
   //@Inject DataManager mDataManager;
 
   public MainActivityPresenter() {
@@ -26,23 +26,25 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    pointArray = new ArrayList<>();
-    getViewState().setAdapter(pointArray);
-    //addPoint();
+    userPoints = new ArrayList<>();
+    getViewState().setAdapter(userPoints);
+    addPoint();
   }
 
   public void addPoint() {
     Timber.wtf("addPoint");
-    pointArray.add(new UserPoint());
+    userPoints.add(new UserPoint());
     getViewState().showPointArray();
   }
 
-  public ArrayList<UserPoint> getPointArray() {
-    return pointArray;
+  public ArrayList<UserPoint> getUserPoints() {
+    return userPoints;
   }
 
   public boolean isFullList() {
-    for (UserPoint userPoint : pointArray) {
+    for (UserPoint userPoint : userPoints) Timber.wtf("userPoint" + userPoint.toString());
+
+    for (UserPoint userPoint : userPoints) {
       if (userPoint.isEmpty()) return false;
     }
     return true;

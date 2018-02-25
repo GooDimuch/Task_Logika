@@ -6,10 +6,10 @@ package com.example.dimuch.task_logika.data.model;
 
 public class UserPoint {
 
-  private double x;
-  private double y;
   private boolean isEmptyX;
   private boolean isEmptyY;
+  private double x;
+  private double y;
 
   public UserPoint() {
     isEmptyX = true;
@@ -23,6 +23,14 @@ public class UserPoint {
 
   public boolean isEmpty() {
     return isEmptyX || isEmptyY;
+  }
+
+  public boolean isEmptyX() {
+    return isEmptyX;
+  }
+
+  public boolean isEmptyY() {
+    return isEmptyY;
   }
 
   public double getX() {

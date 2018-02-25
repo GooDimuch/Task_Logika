@@ -1,7 +1,10 @@
 package com.example.dimuch.task_logika.di.modules;
 
+import com.example.dimuch.task_logika.data.model.UserPoint;
 import dagger.Module;
 import dagger.Provides;
+import java.util.ArrayList;
+import javax.inject.Singleton;
 
 /**
  * Created by Dimuch on 02.10.2017.
@@ -22,6 +25,10 @@ import dagger.Provides;
 
   @Provides String provideTestMessage() {
     return new String("test message");
+  }
+
+  @Provides @Singleton ArrayList<UserPoint> providePointArray() {
+    return new ArrayList<>();
   }
 
 }

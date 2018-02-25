@@ -17,6 +17,12 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+
+    <activity
+        android:name=".feature.activities.CoordinatePlaneActivity"
+        android:parentActivityName=".feature.activities.MainActivity"
+        android:screenOrientation="landscape">
+    </activity>
   </application>
 
 </manifest>

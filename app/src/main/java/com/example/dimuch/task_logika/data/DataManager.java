@@ -21,7 +21,7 @@ public class DataManager {
   //  return mRestApi.getWeatherData()
   //      .doOnNext(weatherModel -> Timber.e(weatherModel.toString()))
   //      .map(
-  //          weatherModel -> (new WeatherModelToWeatherForWholeDayMapper()).transform(weatherModel));
+  //          weatherModel -> (new UserPointsToDataPointsMapper()).transform(weatherModel));
   //}
   //
   //public Observable<List<WeatherForWholeDay>> getCacheWeatherData() {

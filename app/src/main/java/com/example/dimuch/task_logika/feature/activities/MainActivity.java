@@ -1,5 +1,6 @@
 package com.example.dimuch.task_logika.feature.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,20 +45,22 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
   @OnClick(R.id.ivPreview) public void onClickPreview() {
     showTimber("onClickPreview");
     if (mainActivityPresenter.isFullList()) {
-
+      Intent intent = new Intent(this, CoordinatePlaneActivity.class);
+      startActivity(intent);
+    } else {
+      showTimber("not full");
     }
   }
 
-  @Override public void setAdapter(ArrayList<UserPoint> pointArray) {
+  @Override public void setAdapter(ArrayList<UserPoint> userPoints) {
     rvPoint.setLayoutManager(new LinearLayoutManager(this));
     adapter = new PointAdapter();
-    adapter.setPointArray(pointArray);
+    adapter.setUserPoints(userPoints);
     rvPoint.setAdapter(adapter);
   }
 
   @Override public void showPointArray() {
     //showTimber("showPointArray");
-    //for (UserPoint userPoint : pointArray) showTimber(userPoint.toString());
     adapter.notifyDataSetChanged();
   }
 

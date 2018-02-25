@@ -21,10 +21,10 @@ import timber.log.Timber;
  */
 
 public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> {
-  private ArrayList<UserPoint> pointArray;
+  private ArrayList<UserPoint> userPoints;
 
   public PointAdapter() {
-    pointArray = new ArrayList<>();
+    userPoints = new ArrayList<>();
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,21 +35,25 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
     else holder.fabMinus.setVisibility(View.VISIBLE);
+    holder.etX.requestFocus();
 
     holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
 
-    UserPoint point = pointArray.get(position);
-    if (point.isEmpty()) {
+    UserPoint point = userPoints.get(position);
+    if (point.isEmptyX()) {
       holder.etX.setText("");
-      holder.etY.setText("");
     } else {
       holder.etX.setText(String.valueOf(point.getX()));
+    }
+    if (point.isEmptyY()) {
+      holder.etY.setText("");
+    } else {
       holder.etY.setText(String.valueOf(point.getY()));
     }
   }
 
   @Override public int getItemCount() {
-    return pointArray == null ? 0 : pointArray.size();
+    return userPoints == null ? 0 : userPoints.size();
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,7 +70,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
 
     @OnClick(R.id.fabMinus) public void onClickMinus() {
       Timber.wtf("onClickMinus");
-      pointArray.remove(this.getLayoutPosition());
+      userPoints.remove(this.getLayoutPosition());
       notifyDataSetChanged();
     }
 
@@ -74,7 +78,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
       Timber.wtf("onChangeCoordinateX");
       //Timber.wtf(etX.getText().toString());
       if (!etX.getText().toString().isEmpty()) {
-        pointArray.get(this.getLayoutPosition())
+        userPoints.get(this.getLayoutPosition())
             .setX(Double.parseDouble(etX.getText().toString()));
       }
     }
@@ -82,16 +86,16 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     @OnTextChanged(R.id.etCoordinateY) public void onChangeCoordinateY() {
       Timber.wtf("onChangeCoordinateY");
       if (!etY.getText().toString().isEmpty()) {
-        pointArray.get(this.getLayoutPosition())
+        userPoints.get(this.getLayoutPosition())
             .setY(Double.parseDouble(etY.getText().toString()));
       }
     }
   }
 
-  public void setPointArray(ArrayList<UserPoint> pointArray) {
-    Timber.wtf("setPointArray");
-    this.pointArray.clear();
-    this.pointArray = pointArray;
+  public void setUserPoints(ArrayList<UserPoint> userPoints) {
+    Timber.wtf("setUserPoints");
+    this.userPoints.clear();
+    this.userPoints = userPoints;
 
   }
 }
