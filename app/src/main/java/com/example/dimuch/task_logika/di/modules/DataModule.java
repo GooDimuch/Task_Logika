@@ -2,7 +2,6 @@ package com.example.dimuch.task_logika.di.modules;
 
 import dagger.Module;
 import dagger.Provides;
-import retrofit2.Retrofit;
 
 /**
  * Created by Dimuch on 02.10.2017.
@@ -24,4 +23,5 @@ import retrofit2.Retrofit;
   @Provides String provideTestMessage() {
     return new String("test message");
   }
+
 }
