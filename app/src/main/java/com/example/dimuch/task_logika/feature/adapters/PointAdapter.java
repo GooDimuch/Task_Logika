@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,8 +35,10 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
     else holder.fabMinus.setVisibility(View.VISIBLE);
-    UserPoint point = pointArray.get(position);
 
+    holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
+
+    UserPoint point = pointArray.get(position);
     if (point.isEmpty()) {
       holder.etX.setText("");
       holder.etY.setText("");
@@ -51,8 +54,9 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
 
   public class ViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.etX) EditText etX;
-    @BindView(R.id.etY) EditText etY;
+    @BindView(R.id.tvNumberPoint) TextView tvNumberPoint;
+    @BindView(R.id.etCoordinateX) EditText etX;
+    @BindView(R.id.etCoordinateY) EditText etY;
     @BindView(R.id.fabMinus) FloatingActionButton fabMinus;
 
     ViewHolder(View itemView) {
@@ -66,7 +70,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
       notifyDataSetChanged();
     }
 
-    @OnTextChanged(R.id.etX) public void onChangeCoordinateX() {
+    @OnTextChanged(R.id.etCoordinateX) public void onChangeCoordinateX() {
       Timber.wtf("onChangeCoordinateX");
       //Timber.wtf(etX.getText().toString());
       if (!etX.getText().toString().isEmpty()) {
@@ -75,7 +79,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
       }
     }
 
-    @OnTextChanged(R.id.etY) public void onChangeCoordinateY() {
+    @OnTextChanged(R.id.etCoordinateY) public void onChangeCoordinateY() {
       Timber.wtf("onChangeCoordinateY");
       if (!etY.getText().toString().isEmpty()) {
         pointArray.get(this.getLayoutPosition())

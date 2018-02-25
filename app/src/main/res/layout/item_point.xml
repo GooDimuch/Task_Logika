@@ -8,43 +8,57 @@
     >
 
   <TextView
-      android:id="@+id/tvX"
+      android:id="@+id/tvNumberPoint"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="8dp"
+      android:textColor="@android:color/black"
+      android:textSize="18sp"
+      app:layout_constraintBottom_toBottomOf="@+id/tvCoordinateX"
+      app:layout_constraintEnd_toStartOf="@+id/tvCoordinateX"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/tvCoordinateX"
+      />
+
+  <TextView
+      android:id="@+id/tvCoordinateX"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
       android:text="X ="
-      app:layout_constraintBottom_toBottomOf="@+id/etX"
-      app:layout_constraintEnd_toStartOf="@+id/etX"
+      app:layout_constraintBottom_toBottomOf="@+id/etCoordinateX"
+      app:layout_constraintEnd_toStartOf="@+id/etCoordinateX"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@+id/etX"
+      app:layout_constraintStart_toStartOf="@+id/tvNumberPoint"
+      app:layout_constraintTop_toTopOf="@+id/etCoordinateX"
       />
   <EditText
-      android:id="@+id/etX"
+      android:id="@+id/etCoordinateX"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:ems="10"
       android:inputType="number|numberDecimal"
-      app:layout_constraintBottom_toBottomOf="@+id/tvY"
-      app:layout_constraintEnd_toStartOf="@+id/tvY"
+      app:layout_constraintBottom_toBottomOf="@+id/tvCoordinateY"
+      app:layout_constraintEnd_toStartOf="@+id/tvCoordinateY"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/tvX"
-      app:layout_constraintTop_toTopOf="@+id/tvY"
+      app:layout_constraintStart_toEndOf="@+id/tvCoordinateX"
+      app:layout_constraintTop_toTopOf="@+id/tvCoordinateY"
       />
   <TextView
-      android:id="@+id/tvY"
+      android:id="@+id/tvCoordinateY"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="8dp"
       android:text="Y ="
-      app:layout_constraintBottom_toBottomOf="@+id/etY"
-      app:layout_constraintEnd_toStartOf="@+id/etY"
+      app:layout_constraintBottom_toBottomOf="@+id/etCoordinateY"
+      app:layout_constraintEnd_toStartOf="@+id/etCoordinateY"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/etX"
-      app:layout_constraintTop_toTopOf="@+id/etY"
+      app:layout_constraintStart_toEndOf="@+id/etCoordinateX"
+      app:layout_constraintTop_toTopOf="@+id/etCoordinateY"
       />
   <EditText
-      android:id="@+id/etY"
+      android:id="@+id/etCoordinateY"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
@@ -55,7 +69,7 @@
       app:layout_constraintBottom_toBottomOf="@+id/fabMinus"
       app:layout_constraintEnd_toStartOf="@+id/fabMinus"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/tvY"
+      app:layout_constraintStart_toEndOf="@+id/tvCoordinateY"
       app:layout_constraintTop_toTopOf="@+id/fabMinus"
       />
 
@@ -71,7 +85,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/etY"
+      app:layout_constraintStart_toEndOf="@+id/etCoordinateY"
       app:layout_constraintTop_toTopOf="parent"
       app:srcCompat="@drawable/minus"
       />

@@ -34,7 +34,6 @@
         android:layout_marginEnd="8dp"
         app:backgroundTint="@color/colorGreen"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_creator="@+id/rvPoint"
         app:layout_constraintTop_toBottomOf="@+id/rvPoint"
         app:srcCompat="@drawable/plus"
         />
