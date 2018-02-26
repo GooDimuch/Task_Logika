@@ -33,8 +33,8 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
-    if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
-    else holder.fabMinus.setVisibility(View.VISIBLE);
+    //if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
+    //else holder.fabMinus.setVisibility(View.VISIBLE);
 
     holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
 
@@ -56,7 +56,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     return userPoints == null ? 0 : userPoints.size();
   }
 
-  public class ViewHolder extends RecyclerView.ViewHolder {
+  class ViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tvNumberPoint) TextView tvNumberPoint;
     @BindView(R.id.etCoordinateX) EditText etX;

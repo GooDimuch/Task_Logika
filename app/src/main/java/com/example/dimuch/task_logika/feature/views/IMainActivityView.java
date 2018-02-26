@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
   void setAdapter(ArrayList<UserPoint> pointArray);
 
+  void uploadPreviewImage();
+
   void showPointArray();
 
   void showToast(String sToastMessage);

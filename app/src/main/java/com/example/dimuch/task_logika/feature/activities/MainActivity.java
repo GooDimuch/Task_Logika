@@ -16,6 +16,8 @@ import com.example.dimuch.task_logika.data.model.UserPoint;
 import com.example.dimuch.task_logika.feature.adapters.PointAdapter;
 import com.example.dimuch.task_logika.feature.presenters.MainActivityPresenter;
 import com.example.dimuch.task_logika.feature.views.IMainActivityView;
+import com.example.dimuch.task_logika.utils.CustomLayoutManager;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import timber.log.Timber;
 
@@ -53,15 +55,23 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
   }
 
   @Override public void setAdapter(ArrayList<UserPoint> userPoints) {
-    rvPoint.setLayoutManager(new LinearLayoutManager(this));
+    rvPoint.setLayoutManager(new CustomLayoutManager(this));
     adapter = new PointAdapter();
     adapter.setUserPoints(userPoints);
     rvPoint.setAdapter(adapter);
   }
 
+  @Override public void uploadPreviewImage() {
+    Picasso.with(getApplicationContext())
+        .load(R.drawable.preview)
+        .into(ivPreview);
+  }
+
   @Override public void showPointArray() {
     //showTimber("showPointArray");
     adapter.notifyDataSetChanged();
+    Timber.wtf(String.valueOf(adapter.getItemCount()));
+    rvPoint.smoothScrollToPosition(adapter.getItemCount());
   }
 
   @Override public void showToast(String sToastMessage) {

@@ -27,7 +27,7 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    //userPoints = new ArrayList<>();
+    //getViewState().uploadPreviewImage();
     getViewState().setAdapter(userPoints);
     if (userPoints.isEmpty()) {
       addPoint();
@@ -36,8 +36,23 @@ import timber.log.Timber;
 
   public void addPoint() {
     Timber.wtf("addPoint");
-    userPoints.add(new UserPoint(userPoints.size() + 1));
+    userPoints.add(new UserPoint(userPoints.size() + 1, getY(userPoints.size())));
     getViewState().showPointArray();
+  }
+
+  private double getY(int index) {
+    double[] temp = new double[10];
+    temp[0] = 2.8;
+    temp[1] = 4.3;
+    temp[2] = 4.1;
+    temp[3] = 6;
+    temp[4] = 4.9;
+    temp[5] = 2.8;
+    temp[6] = 4.3;
+    temp[7] = 4.1;
+    temp[8] = 6;
+    temp[9] = 4.9;
+    return temp[index];
   }
 
   public ArrayList<UserPoint> getUserPoints() {
@@ -45,8 +60,7 @@ import timber.log.Timber;
   }
 
   public boolean isFullList() {
-    for (UserPoint userPoint : userPoints) Timber.wtf("userPoint" + userPoint.toString());
-
+    //for (UserPoint userPoint : userPoints) Timber.wtf("userPoint" + userPoint.toString());
     for (UserPoint userPoint : userPoints) {
       if (userPoint.isEmpty()) return false;
     }

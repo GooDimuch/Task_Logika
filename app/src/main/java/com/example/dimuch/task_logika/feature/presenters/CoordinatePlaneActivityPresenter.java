@@ -46,7 +46,7 @@ import timber.log.Timber;
   private void paintUserPoints(DataPoint[] points) {
     PointsGraphSeries<DataPoint> series = new PointsGraphSeries<>(points);
     series.setTitle("User points");
-    series.setColor(Color.BLUE);
+    series.setColor(Color.RED);
     series.setSize(10);
     getViewState().paintPoint(series);
   }
@@ -59,7 +59,7 @@ import timber.log.Timber;
 
     LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
     series.setTitle("MLS");
-    series.setColor(Color.RED);
+    series.setColor(Color.BLUE);
     getViewState().paintGraph(series);
   }
 
@@ -68,7 +68,7 @@ import timber.log.Timber;
 
     LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
     series.setTitle("Lagrange");
-    series.setColor(Color.YELLOW);
+    series.setColor(Color.GREEN);
     getViewState().paintGraph(series);
   }
 }

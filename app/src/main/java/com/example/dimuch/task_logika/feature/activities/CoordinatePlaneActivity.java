@@ -37,13 +37,13 @@ public class CoordinatePlaneActivity extends MvpAppCompatActivity
     gvCoordinatePlane.getLegendRenderer().setVisible(true);
     gvCoordinatePlane.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
-    gvCoordinatePlane.getViewport().setXAxisBoundsManual(true);
-    gvCoordinatePlane.getViewport().setMinX(minX);
-    gvCoordinatePlane.getViewport().setMaxX(maxX);
-
-    gvCoordinatePlane.getViewport().setYAxisBoundsManual(true);
-    gvCoordinatePlane.getViewport().setMinY(minY);
-    gvCoordinatePlane.getViewport().setMaxY(maxY);
+    //gvCoordinatePlane.getViewport().setXAxisBoundsManual(true);
+    //gvCoordinatePlane.getViewport().setMinX(minX);
+    //gvCoordinatePlane.getViewport().setMaxX(maxX);
+    //
+    //gvCoordinatePlane.getViewport().setYAxisBoundsManual(true);
+    //gvCoordinatePlane.getViewport().setMinY(minY);
+    //gvCoordinatePlane.getViewport().setMaxY(maxY);
 
     gvCoordinatePlane.getViewport().setScalable(isScaleX);
     gvCoordinatePlane.getViewport().setScalableY(isScaleY);
