@@ -39,17 +39,20 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
 
     UserPoint point = userPoints.get(position);
-    if (point.isEmptyX()) {
-      holder.etX.setText("");
-    } else {
-      holder.etX.setText(String.valueOf(point.getX()));
-    }
-    if (point.isEmptyY()) {
-      holder.etY.setText("");
-    } else {
-      holder.etY.setText(String.valueOf(point.getY()));
-    }
-    holder.etY.requestFocus();
+    holder.etX.setText(String.valueOf(point.getX()));
+    holder.etY.setText(String.valueOf(point.getY()));
+
+    //if (point.isEmptyX()) {
+    //  holder.etX.setText("");
+    //} else {
+    //  holder.etX.setText(String.valueOf(point.getX()));
+    //}
+    //if (point.isEmptyY()) {
+    //  holder.etY.setText("");
+    //} else {
+    //  holder.etY.setText(String.valueOf(point.getY()));
+    //}
+    //holder.etY.requestFocus();
   }
 
   @Override public int getItemCount() {

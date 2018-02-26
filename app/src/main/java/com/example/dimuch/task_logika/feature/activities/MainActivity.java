@@ -40,7 +40,7 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
     if (mainActivityPresenter.isFullList()) {
       mainActivityPresenter.addPoint();
     } else {
-      showTimber("not full");
+      showToast("Fill in all the fields");
     }
   }
 
@@ -50,7 +50,7 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
       Intent intent = new Intent(this, CoordinatePlaneActivity.class);
       startActivity(intent);
     } else {
-      showTimber("not full");
+      showToast("Fill in all the fields");
     }
   }
 
