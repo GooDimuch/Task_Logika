@@ -6,6 +6,7 @@ import com.example.dimuch.task_logika.App;
 import com.example.dimuch.task_logika.data.model.UserPoint;
 import com.example.dimuch.task_logika.feature.views.IMainActivityView;
 import java.util.ArrayList;
+import java.util.Comparator;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -26,14 +27,16 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    userPoints = new ArrayList<>();
+    //userPoints = new ArrayList<>();
     getViewState().setAdapter(userPoints);
-    addPoint();
+    if (userPoints.isEmpty()) {
+      addPoint();
+    }
   }
 
   public void addPoint() {
     Timber.wtf("addPoint");
-    userPoints.add(new UserPoint());
+    userPoints.add(new UserPoint(userPoints.size() + 1));
     getViewState().showPointArray();
   }
 

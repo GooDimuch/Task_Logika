@@ -35,7 +35,6 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
     if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
     else holder.fabMinus.setVisibility(View.VISIBLE);
-    holder.etX.requestFocus();
 
     holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
 
@@ -50,6 +49,7 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     } else {
       holder.etY.setText(String.valueOf(point.getY()));
     }
+    holder.etY.requestFocus();
   }
 
   @Override public int getItemCount() {

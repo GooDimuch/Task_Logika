@@ -7,6 +7,7 @@ import com.example.dimuch.task_logika.App;
 import com.example.dimuch.task_logika.data.local.mappers.UserPointsToDataPointsMapper;
 import com.example.dimuch.task_logika.data.model.UserPoint;
 import com.example.dimuch.task_logika.feature.views.ICoordinatePlaneActivityView;
+import com.example.dimuch.task_logika.utils.ApproximationUtils;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
@@ -33,18 +34,41 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    getViewState().configureGraph(-1, 10, -1, 10, IS_SCALE, IS_SCALE);
+    getViewState().configureGraph(0, 7, 0, 10, IS_SCALE, IS_SCALE);
 
-    Timber.wtf("onFirstViewAttach");
-    for (UserPoint userPoint : userPoints) Timber.wtf("userPoint" + userPoint.toString());
+    DataPoint[] dataPoints = new UserPointsToDataPointsMapper().transform(userPoints);
 
-    DataPoint[] points = new UserPointsToDataPointsMapper().transform(userPoints);
-    for (DataPoint point : points) Timber.wtf("point" + point.toString());
+    paintUserPoints(dataPoints);
+    paintGraphMLS(dataPoints);
+    paintGraphLagrange(dataPoints);
+  }
 
+  private void paintUserPoints(DataPoint[] points) {
     PointsGraphSeries<DataPoint> series = new PointsGraphSeries<>(points);
     series.setTitle("User points");
-    series.setColor(Color.MAGENTA);
+    series.setColor(Color.BLUE);
     series.setSize(10);
     getViewState().paintPoint(series);
+  }
+
+  private void paintGraphMLS(DataPoint[] dataPoints) {
+    DataPoint[] points = new ApproximationUtils(dataPoints).approximateMLS();
+    for (DataPoint dataPoint : points) {
+      Timber.wtf(dataPoint.toString());
+    }
+
+    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+    series.setTitle("MLS");
+    series.setColor(Color.RED);
+    getViewState().paintGraph(series);
+  }
+
+  private void paintGraphLagrange(DataPoint[] dataPoints) {
+    DataPoint[] points = new ApproximationUtils(dataPoints).approximateLagrange();
+
+    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
+    series.setTitle("Lagrange");
+    series.setColor(Color.YELLOW);
+    getViewState().paintGraph(series);
   }
 }

@@ -12,6 +12,7 @@ import com.example.dimuch.task_logika.R;
 import com.example.dimuch.task_logika.feature.presenters.CoordinatePlaneActivityPresenter;
 import com.example.dimuch.task_logika.feature.views.ICoordinatePlaneActivityView;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.PointsGraphSeries;
@@ -33,6 +34,9 @@ public class CoordinatePlaneActivity extends MvpAppCompatActivity
 
   @Override public void configureGraph(int minX, int maxX, int minY, int maxY, boolean isScaleX,
       boolean isScaleY) {
+    gvCoordinatePlane.getLegendRenderer().setVisible(true);
+    gvCoordinatePlane.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
+
     gvCoordinatePlane.getViewport().setXAxisBoundsManual(true);
     gvCoordinatePlane.getViewport().setMinX(minX);
     gvCoordinatePlane.getViewport().setMaxX(maxX);
