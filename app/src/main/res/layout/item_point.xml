@@ -4,9 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:layout_editor_absoluteY="73dp"
+    tools:layout_editor_absoluteY="81dp"
     >
 
+
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/fabMinus"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:backgroundTint="@color/colorRed"
+      app:fabSize="mini"
+      app:layout_constraintBottom_toBottomOf="@+id/tvNumberPoint"
+      app:layout_constraintEnd_toStartOf="@+id/tvNumberPoint"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="@+id/tvNumberPoint"
+      app:layout_constraintVertical_bias="0.533"
+      app:srcCompat="@drawable/minus"
+      />
   <TextView
       android:id="@+id/tvNumberPoint"
       android:layout_width="wrap_content"
@@ -17,7 +32,7 @@
       app:layout_constraintBottom_toBottomOf="@+id/tvCoordinateX"
       app:layout_constraintEnd_toStartOf="@+id/tvCoordinateX"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/fabMinus"
       app:layout_constraintTop_toTopOf="@+id/tvCoordinateX"
       />
 
@@ -25,25 +40,27 @@
       android:id="@+id/tvCoordinateX"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="8dp"
       android:text="X ="
       app:layout_constraintBottom_toBottomOf="@+id/etCoordinateX"
       app:layout_constraintEnd_toStartOf="@+id/etCoordinateX"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toStartOf="@+id/tvNumberPoint"
+      app:layout_constraintStart_toEndOf="@+id/tvNumberPoint"
       app:layout_constraintTop_toTopOf="@+id/etCoordinateX"
+      app:layout_constraintVertical_bias="0.518"
       />
   <EditText
       android:id="@+id/etCoordinateX"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:ems="10"
-      android:inputType="number|numberDecimal"
+      android:focusableInTouchMode="true"
+      android:inputType="number|numberSigned|numberDecimal"
       app:layout_constraintBottom_toBottomOf="@+id/tvCoordinateY"
       app:layout_constraintEnd_toStartOf="@+id/tvCoordinateY"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/tvCoordinateX"
       app:layout_constraintTop_toTopOf="@+id/tvCoordinateY"
+      app:layout_constraintVertical_bias="0.518"
       />
   <TextView
       android:id="@+id/tvCoordinateY"
@@ -56,37 +73,21 @@
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toEndOf="@+id/etCoordinateX"
       app:layout_constraintTop_toTopOf="@+id/etCoordinateY"
+      app:layout_constraintVertical_bias="0.518"
       />
   <EditText
       android:id="@+id/etCoordinateY"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginBottom="8dp"
-      android:layout_marginEnd="8dp"
       android:layout_marginTop="8dp"
       android:ems="10"
-      android:inputType="number|numberDecimal"
-      app:layout_constraintBottom_toBottomOf="@+id/fabMinus"
-      app:layout_constraintEnd_toStartOf="@+id/fabMinus"
-      app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/tvCoordinateY"
-      app:layout_constraintTop_toTopOf="@+id/fabMinus"
-      />
-
-  <android.support.design.widget.FloatingActionButton
-      android:id="@+id/fabMinus"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:layout_marginEnd="8dp"
-      android:layout_marginTop="8dp"
-      app:backgroundTint="@color/colorRed"
-      app:fabSize="mini"
+      android:focusableInTouchMode="true"
+      android:inputType="number|numberSigned|numberDecimal"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
-      app:layout_constraintStart_toEndOf="@+id/etCoordinateY"
+      app:layout_constraintStart_toEndOf="@+id/tvCoordinateY"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/minus"
       />
 </android.support.constraint.ConstraintLayout>

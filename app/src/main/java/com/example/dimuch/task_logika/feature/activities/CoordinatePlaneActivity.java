@@ -21,7 +21,6 @@ import timber.log.Timber;
 public class CoordinatePlaneActivity extends MvpAppCompatActivity
     implements ICoordinatePlaneActivityView {
 
-  private int x = 1;
   @BindView(R.id.gvCoordinatePlane) GraphView gvCoordinatePlane;
 
   @InjectPresenter CoordinatePlaneActivityPresenter coordinatePlaneActivityPresenter;
@@ -61,4 +60,6 @@ public class CoordinatePlaneActivity extends MvpAppCompatActivity
     Timber.wtf(sToastMessage);
     Toast.makeText(getApplicationContext(), sToastMessage, Toast.LENGTH_LONG).show();
   }
+
+
 }

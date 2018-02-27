@@ -36,8 +36,8 @@ import timber.log.Timber;
 
   public void addPoint() {
     Timber.wtf("addPoint");
-    //userPoints.add(new UserPoint(userPoints.size() + 1, getY(userPoints.size())));
-    userPoints.add(new UserPoint());
+    userPoints.add(new UserPoint(userPoints.size() + 1));
+    //userPoints.add(new UserPoint());
     getViewState().showPointArray();
   }
 

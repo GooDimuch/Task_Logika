@@ -25,8 +25,8 @@ public class ApproximationUtils {
     x = fillArrays(COORDINATE_X);
     y = fillArrays(COORDINATE_Y);
 
-    Timber.wtf("x =" + Arrays.toString(x));
-    Timber.wtf("y =" + Arrays.toString(y));
+    //Timber.wtf("x =" + Arrays.toString(x));
+    //Timber.wtf("y =" + Arrays.toString(y));
   }
 
   public DataPoint[] approximateMLS() {

@@ -2,7 +2,6 @@ package com.example.dimuch.task_logika.feature.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -46,11 +45,13 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
 
   @OnClick(R.id.ivPreview) public void onClickPreview() {
     showTimber("onClickPreview");
-    if (mainActivityPresenter.isFullList()) {
+    if (!mainActivityPresenter.isFullList()) {
+      showToast("Fill in all the fields");
+    } else if (adapter.getItemCount() < 2) {
+      showToast("Enter at least 2 points");
+    } else {
       Intent intent = new Intent(this, CoordinatePlaneActivity.class);
       startActivity(intent);
-    } else {
-      showToast("Fill in all the fields");
     }
   }
 
@@ -62,16 +63,18 @@ public class MainActivity extends MvpAppCompatActivity implements IMainActivityV
   }
 
   @Override public void uploadPreviewImage() {
-    Picasso.with(getApplicationContext())
-        .load(R.drawable.preview)
-        .into(ivPreview);
+    Picasso.with(getApplicationContext()).load(R.drawable.preview).into(ivPreview);
   }
 
   @Override public void showPointArray() {
     //showTimber("showPointArray");
-    adapter.notifyDataSetChanged();
-    Timber.wtf(String.valueOf(adapter.getItemCount()));
-    rvPoint.smoothScrollToPosition(adapter.getItemCount());
+    if (adapter.getItemCount() == 2) {
+      adapter.notifyDataSetChanged();
+    } else {
+      adapter.notifyItemInserted(adapter.getItemCount());
+    }
+    //adapter.notifyDataSetChanged();
+    rvPoint.smoothScrollToPosition(adapter.getItemCount() - 1);
   }
 
   @Override public void showToast(String sToastMessage) {

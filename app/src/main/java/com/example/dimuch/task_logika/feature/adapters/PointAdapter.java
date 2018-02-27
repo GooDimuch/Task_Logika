@@ -21,6 +21,8 @@ import timber.log.Timber;
  */
 
 public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> {
+
+  private static final int START = 0;
   private ArrayList<UserPoint> userPoints;
 
   public PointAdapter() {
@@ -33,35 +35,37 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
-    //if (getItemCount() == 1) holder.fabMinus.setVisibility(View.INVISIBLE);
-    //else holder.fabMinus.setVisibility(View.VISIBLE);
+    Timber.wtf("position = " + position);
+    Timber.wtf("getItemCount = " + getItemCount());
+    if (getItemCount() == 1) {
+      holder.fabMinus.setVisibility(View.INVISIBLE);
+    } else {
+      holder.fabMinus.setVisibility(View.VISIBLE);
+    }
 
-    holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
+    //holder.tvNumberPoint.setText(String.valueOf(position + 1) + ": ");
 
     UserPoint point = userPoints.get(position);
-    holder.etX.setText(String.valueOf(point.getX()));
-    holder.etY.setText(String.valueOf(point.getY()));
-
-    //if (point.isEmptyX()) {
-    //  holder.etX.setText("");
-    //} else {
-    //  holder.etX.setText(String.valueOf(point.getX()));
-    //}
-    //if (point.isEmptyY()) {
-    //  holder.etY.setText("");
-    //} else {
-    //  holder.etY.setText(String.valueOf(point.getY()));
-    //}
-    //holder.etY.requestFocus();
+    if (point.isEmptyX()) {
+      holder.etX.setText("");
+    } else {
+      holder.etX.setText(String.valueOf(point.getX()));
+    }
+    if (point.isEmptyY()) {
+      holder.etY.setText("");
+    } else {
+      holder.etY.setText(String.valueOf(point.getY()));
+    }
   }
 
   @Override public int getItemCount() {
-    return userPoints == null ? 0 : userPoints.size();
+    return userPoints.size();
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tvNumberPoint) TextView tvNumberPoint;
+
     @BindView(R.id.etCoordinateX) EditText etX;
     @BindView(R.id.etCoordinateY) EditText etY;
     @BindView(R.id.fabMinus) FloatingActionButton fabMinus;
@@ -74,23 +78,32 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     @OnClick(R.id.fabMinus) public void onClickMinus() {
       Timber.wtf("onClickMinus");
       userPoints.remove(this.getLayoutPosition());
-      notifyDataSetChanged();
+      notifyItemRemoved(this.getLayoutPosition());
     }
 
     @OnTextChanged(R.id.etCoordinateX) public void onChangeCoordinateX() {
       Timber.wtf("onChangeCoordinateX");
-      //Timber.wtf(etX.getText().toString());
-      if (!etX.getText().toString().isEmpty()) {
-        userPoints.get(this.getLayoutPosition())
-            .setX(Double.parseDouble(etX.getText().toString()));
+      if (etX.getText().toString().isEmpty()
+          || etX.getText().toString().equals("-")
+          || etX.getText().toString().equals(".")
+          || etX.getText().toString().equals("-.")) {
+        userPoints.get(this.getLayoutPosition()).setX(0);
+        userPoints.get(this.getLayoutPosition()).setEmptyX(true);
+      } else {
+        userPoints.get(this.getLayoutPosition()).setX(Double.parseDouble(etX.getText().toString()));
       }
     }
 
     @OnTextChanged(R.id.etCoordinateY) public void onChangeCoordinateY() {
       Timber.wtf("onChangeCoordinateY");
-      if (!etY.getText().toString().isEmpty()) {
-        userPoints.get(this.getLayoutPosition())
-            .setY(Double.parseDouble(etY.getText().toString()));
+      if (etY.getText().toString().isEmpty()
+          || etY.getText().toString().equals("-")
+          || etY.getText().toString().equals(".")
+          || etY.getText().toString().equals("-.")) {
+        userPoints.get(this.getLayoutPosition()).setY(0);
+        userPoints.get(this.getLayoutPosition()).setEmptyY(true);
+      } else {
+        userPoints.get(this.getLayoutPosition()).setY(Double.parseDouble(etY.getText().toString()));
       }
     }
   }
@@ -99,6 +112,5 @@ public class PointAdapter extends RecyclerView.Adapter<PointAdapter.ViewHolder> 
     Timber.wtf("setUserPoints");
     this.userPoints.clear();
     this.userPoints = userPoints;
-
   }
 }

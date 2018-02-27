@@ -38,9 +38,9 @@ import timber.log.Timber;
 
     DataPoint[] dataPoints = new UserPointsToDataPointsMapper().transform(userPoints);
 
-    paintUserPoints(dataPoints);
     paintGraphMLS(dataPoints);
     paintGraphLagrange(dataPoints);
+    paintUserPoints(dataPoints);
   }
 
   private void paintUserPoints(DataPoint[] points) {
@@ -53,9 +53,6 @@ import timber.log.Timber;
 
   private void paintGraphMLS(DataPoint[] dataPoints) {
     DataPoint[] points = new ApproximationUtils(dataPoints).approximateMLS();
-    for (DataPoint dataPoint : points) {
-      Timber.wtf(dataPoint.toString());
-    }
 
     LineGraphSeries<DataPoint> series = new LineGraphSeries<>(points);
     series.setTitle("MLS");

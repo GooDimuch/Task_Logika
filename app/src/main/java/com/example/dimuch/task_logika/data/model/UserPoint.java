@@ -34,8 +34,16 @@ public class UserPoint {
     return isEmptyX;
   }
 
+  public void setEmptyX(boolean emptyX) {
+    isEmptyX = emptyX;
+  }
+
   public boolean isEmptyY() {
     return isEmptyY;
+  }
+
+  public void setEmptyY(boolean emptyY) {
+    isEmptyY = emptyY;
   }
 
   public double getX() {
